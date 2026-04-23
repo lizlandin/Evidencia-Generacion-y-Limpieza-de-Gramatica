@@ -102,7 +102,7 @@ Ahora con esta nueva adición, podemos formar oraciones como las siguientes:
 
 La primera gramática creada, con todas las reglas previamente explicadas, quedo así:
 
-<img width="500" height="550" alt="image" src="https://github.com/user-attachments/assets/724f5e3c-2b11-4636-b768-59a86ca3bfd1" />
+<img width="450" height="image" alt="image" src="https://github.com/user-attachments/assets/724f5e3c-2b11-4636-b768-59a86ca3bfd1" />
 
 
 Sin embargo esta tiene dos problemas: que es ambigua y cuenta con recursividad izquierda, lo cual solucionaremos a continuación.
@@ -113,8 +113,13 @@ De acuerdo con Linz y Rodger (2022), una gramática libre de contexto se conside
 
 Lo cual se veria de esta manera:
 
-<img width="500" height="image" alt="image" src="https://github.com/user-attachments/assets/f14f78d0-f80b-44b7-a2c1-4f29d0cec6a1" />
+<img width="400" height="image" alt="image" src="https://github.com/user-attachments/assets/f14f78d0-f80b-44b7-a2c1-4f29d0cec6a1" />
 
+En el caso de mi gramática, podemos saber que esta es ambigua porque al probar la cadena "나(yo) 는 피자(pizza) 를 먹다(comer) 그리고(y) 그(él) 는 커피(café) 를 마시다(beber) 그리고(y) 우리(nosotros) 는 음악(música) 를 듣다(escuchar)" con el código "gramatica_ambigua.py" podemos observar que el output es el siguiente:
+
+<img width="1200" height="image" alt="Screenshot 2026-04-23 at 12 43 01 p m" src="https://github.com/user-attachments/assets/131263ed-2d40-4c17-89aa-5e4ebbf2c866" />
+
+Este output muestra dos árboles, lo cual quiere decir que hay dos maneras diferentes de crear esa string, debido a esto se debe cambiar la gramática de manera que solo haya una posibilidad de crear esta y otras strings similares.
 
 
 ### Elimininación de Recursividad Izquierda
