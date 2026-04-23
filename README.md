@@ -119,7 +119,7 @@ En el caso de mi gramática, podemos saber que esta es ambigua porque al probar 
 
 <img width="1200" height="image" alt="Screenshot 2026-04-23 at 12 43 01 p m" src="https://github.com/user-attachments/assets/131263ed-2d40-4c17-89aa-5e4ebbf2c866" />
 
-Este output muestra dos árboles, lo cual quiere decir que hay dos maneras diferentes de crear esa string, debido a esto se debe cambiar la gramática de manera que solo haya una posibilidad de crear esta y otras strings similares.
+El output muestra dos árboles, lo cual quiere decir que hay dos maneras diferentes de crear esa string, debido a esto se debe cambiar la gramática de manera que solo exista una sola posibilidad de crear esta y otras strings similares.
 
 
 ### Elimininación de Recursividad Izquierda
