@@ -119,7 +119,27 @@ En el caso de mi gramática, podemos saber que esta es ambigua porque al probar 
 
 <img width="1200" height="image" alt="Screenshot 2026-04-23 at 12 43 01 p m" src="https://github.com/user-attachments/assets/131263ed-2d40-4c17-89aa-5e4ebbf2c866" />
 
-El output muestra dos árboles, lo cual quiere decir que hay dos maneras diferentes de crear esa string, debido a esto se debe cambiar la gramática de manera que solo exista una sola posibilidad de crear esta y otras strings similares.
+El output muestra dos árboles, lo cual quiere decir que hay dos maneras diferentes de formar esa string, debido a esto se debe cambiar la gramática de manera que solo exista una sola posibilidad de crear esta y otras strings similares y para esto se reescribe la gramática de una manera equivalente e inambigua.
+
+Para poder lograr esto, primero se necesita identificar la producción que permite más de una interpretación para las cadenas, en este caso, el problema estaba en la regla:
+
+Sentence -> **Sentence** Conj **Sentence** | SimpleSentence
+
+Esta producción era ambigua porque ambos lados de la conjunción tenían la misma categoría, es decir, **Sentence**, y al ser equivalentes, una misma oración compuesta podía agruparse de distintas maneras y, por lo tanto, generaba más de un árbol sintáctico.
+
+Lo que hice para poder arreglar la gramática fue agregar estados intermedios y renombrar ramas equivalentes, para esto se introdujo un nuevo no terminal cuyo propósito fue separar la estructura completa de la unidad básica de la oración, es decir, en lugar de permitir que ambos lados fueran **Sentence**, definí un estado intermedio, Tail, con la producción:
+
+Tail -> SimpleSentence
+
+y después, reescribí la regla principal como:
+
+Sentence -> Sentence Conj **Tail** | **Tail**
+
+Con este cambio, la gramática ya no tiene dos ramas equivalentes a la hora de utilizar la conjunción, ya que antes, tanto el lado izquierdo como el derecho podían expandirse como Sentence, lo que permitía varias agrupaciones, y ahora, solo el lado izquierdo puede seguir creciendo como una oración completa, mientras que el lado derecho queda restringido a una oración básica representada por Tail.
+
+En otras palabras, lo que se hizo fue cambiar una de las ramas en las producciones de la gramática que antes eran iguales, dándole un nombre diferente a uno de los símbolos no terminales para que ya no representaran exactamente lo mismo. Al separar esas funciones y hacer que uno de los lados represente una oración más simple, se evita que la gramática tenga dos caminos equivalentes en sus producciones para generar la misma cadena, de esta forma, la estructura queda fija y solo existe una manera de derivar cada cadena, lo que elimina la ambigüedad.
+
+
 
 
 ### Elimininación de Recursividad Izquierda
