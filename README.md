@@ -147,6 +147,45 @@ Con estos cambios, la gramática ya no es ambigua, que era justo lo que se busca
 
 ### Elimininación de Recursividad Izquierda
 
+De acuerdo con Compilers: Principles, Techniques, and Tools (Aho et al., 2007) en un analizador descendente recursivo puede ocurrir un problema grave cuando la gramática presenta algo llamado recursión izquierda, lo cual es un conflicto que puede provocar un ciclo infinito durante el análisis y aparece en producciones donde un símbolo no terminal se llama a sí mismo al inicio de la regla, como por ejemplo:
+
+```
+expr → expr + term.
+```
+
+Cuando el analizador intenta aplicar esta producción, el primer elemento que debe procesar vuelve a ser **expr**, lo que hace que el procedimiento se llame a sí mismo de manera recursiva sin haber consumido ningún símbolo de la entrada. Debido a que el avance en la cadena de entrada solo ocurre cuando se reconoce un símbolo terminal, esta llamada recursiva no produce ningún progreso y como consecuencia, el mismo proceso se repite una y otra vez, generando una secuencia infinita de llamadas recursivas que impide completar el análisis.
+
+Este mismo problema se puede observar en mi propia gramática, la cual actualmente se ve de la siguieinte manera:
+
+```
+Pron -> 나 | 너 | 그 | 그녀 | 우리
+Pron -> yo | tú | él | ella | nosotros
+
+SubjMarker -> 는
+
+Noun -> 피자 | 커피 | 영화 | 카메라 | 음악
+Noun -> pizza | café | película | cámara | música
+
+ObjMarker -> 를
+
+Verb -> 먹다 | 보다 | 좋아하다 | 가지다 | 듣다 | 마시다
+Verb -> comer | ver | gustar | tener | escuchar | beber
+
+Conj -> 그리고 | 또는 | 하지만
+Conj -> y | o | pero
+
+SubjP -> Pron SubjMarker
+ObjP -> Noun ObjMarker
+
+SimpleSentence -> SubjP ObjP Verb
+
+Tail -> SimpleSentence
+
+Sentence -> Sentence Conj Tail | Tail
+```
+El problema esta en la producción del no terminal ***Sentence***:
+
+- ***Sentence*** -> ***Sentence*** Conj Tail | Tail
 
 ## IMPLEMENTACIÓN
 
@@ -156,7 +195,7 @@ Con estos cambios, la gramática ya no es ambigua, que era justo lo que se busca
 
 ## REFERENCIAS 
 - Linz, P., & Rodger, S. H. (2022). An introduction to formal languages and automata. Jones & Bartlett Learning.
-- Hopcroft, J. E., Motwani, R., & Ullman, J. D. (2008). Teoría de autómatas, lenguajes y computación (3.ª ed.). Pearson Addison-Wesley.
+- Aho, A. V., Lam, M. S., Sethi, R., & Ullman, J. D. (2007). Compilers: Principles, techniques, and tools (2nd ed.). Pearson Addison-Wesley.
 - Toyryla, L. (2026, March 17). Korean Grammar - a Beginner’s Guide. 90 Day Korean. https://www.90daykorean.com/korean-grammar/
 - Guasti, C. (2023, September 6). Interesting facts about the Korean language. https://www.citylit.ac.uk/blog/interesting-facts-about-the-korean-language
 - Martin, SE (2025, Aprill 23). Idioma coreano . Enciclopedia Británica . https://www.britannica.com/topic/Korean-language
