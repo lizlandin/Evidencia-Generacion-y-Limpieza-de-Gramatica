@@ -292,6 +292,106 @@ Debido a que las cadenas a probar son un poco largas y es fácil equivocarse al 
 | 19 | `나(yo) 는 피자(pizza) 를 먹다(comer) 그리고(y) 그(él) 는 커피(café) 마시다(beber)` | Falta `를` |
 | 20 | `나(yo) 는 피자(pizza) 를 먹다(comer) 그리고(y) 그(él) 는 커피(café) 를` | Falta verbo |
 
+***PARSER LL(1) PRINCETON***
+
+El parser LL(1) que utilicé es de la Universidad de Princeton y nos fue proporcionado en clase para probar nuestra gramática, el link de acceso es el siguiente:https://www.cs.princeton.edu/courses/archive/spring20/cos320/LL1/
+
+Aquí lo que hice fuue ingresar la gramática en el formato especificado lo cual es importante porque, si la gramática no respeta los requerimientos, el parser no puede interpretarla correctamente. Por ejemplo, se debe usar "::=" para definir producciones y '' para representar la cadena vacía. 
+
+Una vez adaptada, la gramática quedo de la siguiente manera:
+```
+Sentence ::= Tail N_Sentence
+N_Sentence ::= Conj Tail N_Sentence
+N_Sentence ::= ''
+
+Tail ::= SimpleSentence
+
+SimpleSentence ::= SubjP ObjP Verb
+
+SubjP ::= Pron SubjMarker
+ObjP ::= Noun ObjMarker
+
+Pron ::= 나
+Pron ::= 너
+Pron ::= 그
+Pron ::= 그녀
+Pron ::= 우리
+
+SubjMarker ::= 는
+
+Noun ::= 피자
+Noun ::= 커피
+Noun ::= 영화
+Noun ::= 카메라
+Noun ::= 음악
+
+ObjMarker ::= 를
+
+Verb ::= 먹다
+Verb ::= 보다
+Verb ::= 좋아하다
+Verb ::= 가지다
+Verb ::= 듣다
+Verb ::= 마시다
+
+Conj ::= 그리고
+Conj ::= 또는
+Conj ::= 하지만
+
+```
+Después, el parser genera las tablas necesarias para realizar el análisis LL(1), las cuales son las de FIRST, FOLLOW y la de análisis LL(1). 
+
+***TABLA FIRST Y FOLLOW***
+
+- FIRST indica con qué símbolos puede comenzar una producción.
+- FOLLOW indica qué símbolos pueden aparecer después de un no terminal.
+
+El propósito de estas tablas es ayudar al parser a saber qué opciones son posibles en cada paso.
+
+<img width="700" height="image" alt="image" src="https://github.com/user-attachments/assets/2c722487-4279-48a3-ab92-0e53242301ec" />
+
+
+***TABLA DE ANÁLISIS LL(1)***
+
+La segunda tabla es la tabla de análisis LL(1). 
+
+Esta tabla va a funcionar como un tipo de guía para el parser, ya que le va a indicar qué producción debe aplicar dependiendo del no terminal que esté analizando y del símbolo de entrada que esté leyendo, si en una celda existe una producción, el parser continua y si no hay una transición válida, la cadena se rechaza.
+
+<img width="3490" height="image" alt="image" src="https://github.com/user-attachments/assets/92d88e25-76d3-4947-8c41-8718b5b62b3c" />
+
+Finalmente, se ingresa una cadena de prueba y el parser realiza el análisis paso a paso. En cada paso revisa el símbolo actual de entrada y revisa la tabla LL(1) para decidir qué regla aplicar, de esta manera se va construyendo un árbol hasta llegar a los símbolos terminales ($).
+
+**Ejemplo del proceso de parsing:**
+
+Cadena a analizar: 나 는 피자 를 먹다 (yo como pizza) 
+
+<img width="400" height="image" alt="image" src="https://github.com/user-attachments/assets/2197bda2-b078-49f8-b152-82ca5aadd1fc" />
+<img width="400" height="image" alt="image" src="https://github.com/user-attachments/assets/adfed3ac-a2e5-4da5-8c50-6ee9170a4d0b" />
+<img width="400" height="image" alt="image" src="https://github.com/user-attachments/assets/07cc4d9c-7ae6-4e25-9d3d-cf2c77251fcd" />
+<img width="400" height="image" alt="image" src="https://github.com/user-attachments/assets/315564c5-0a37-4824-a341-9907bd584b67" />
+<img width="400" height="image" alt="image" src="https://github.com/user-attachments/assets/b625f3bb-8391-432c-99a6-bea331a24700" />
+<img width="400" height="image" alt="image" src="https://github.com/user-attachments/assets/6d5182ee-7c24-4540-a9e7-dfda39ee2fa7" />
+<img width="400" height="image" alt="image" src="https://github.com/user-attachments/assets/ff6aff0f-bcf0-45e1-b5e7-95deec8389f5" />
+<img width="400" height="image" alt="image" src="https://github.com/user-attachments/assets/8fe46f4a-0f39-4475-a119-d2b5fcfe8700" />
+<img width="400" height="image" alt="image" src="https://github.com/user-attachments/assets/afafbef8-5349-455f-9606-85685892f29d" />
+<img width="400" height="image" alt="image" src="https://github.com/user-attachments/assets/33acd59c-7a22-42f5-8c34-4997a63b48d7" />
+<img width="400" height="image" alt="image" src="https://github.com/user-attachments/assets/c21447d4-7d17-4d43-96ee-0280e3398268" />
+<img width="400" height="image" alt="image" src="https://github.com/user-attachments/assets/73a4192b-ba3e-4d76-9fdc-41e2184d633e" />
+<img width="400" height="image" alt="image" src="https://github.com/user-attachments/assets/3dbdf1ad-e397-4ac8-a4c7-8097d198dcf0" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## ANÁLISIS
 
 ## REFERENCIAS 
