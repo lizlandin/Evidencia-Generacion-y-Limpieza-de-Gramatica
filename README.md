@@ -228,8 +228,69 @@ Para la implementación y pruebas de la gramática vamos a usar dos recursos:
 - Un código en Python con NLTK que me permitirá probar la gramática generando árboles de sintaxis, lo cual va a ayudar a visualizar cómo es que se crean las oraciones y verificará que su estructura sea correcta conforme a las reglas que ya definí.
 - Un LL(1) Parser el cual se utilizará para validar formalmente la gramática, este me va a permitir obtener y comprobar elementos como los conjuntos FIRST y FOLLOW, así como el correcto funcionamiento del análisis sintáctico paso a paso, además de ayudarme a confirmar que la gramática cumple con las condiciones necesarias, no tener ambigüedad y recursión izquierda, ya que de no ser así el LL(1) no funcionará.
 
+***COMO EJECUTAR EL PROGRAMA DE PYTHON***
 
+***- Descargar y correr el programa***
+ - Primero para poder ejecutar el programa se necesita tener Python 3 y la librería NLTK instalada.
+ - Descarga el archivo titulado "gramatica_pruebas.py" 
+ - Desde la terminal, te debes ubicar en la carpeta donde se encuentra el archivo y ejecutar el comando "python3 gramatica_pruebas.py".
 
+***- Probar cadenas***
+ - El programa solicitará al usuario ingresar una cadena, la cual será evaluada por la gramática, indicando si es aceptada o rechazada.
+ - El input debe de ser estar estructurado como el siguiente ejemplo:
+   - " 나(yo) 는 피자(pizza) 를 먹다(comer) 그리고(y) 그(él) 는 커피(café) 를 마시다(beber) 그리고(y) 우리(nosotros) 는 음악(música) 를 듣다(escuchar) "
+
+Debido a que las cadenas a probar son un poco largas y es fácil equivocarse al ingresar el input, a continuación hay una serie de cadenas para probar con su respectivo resultado esperado para copiar y pegar en el código, comprobando así si el output es el correcto. 
+
+***Cadenas aceptadas***
+
+| # | Cadena |
+|--|--------|
+| 1 | `나(yo) 는 피자(pizza) 를 먹다(comer)` |
+| 2 | `너(tú) 는 커피(café) 를 마시다(beber)` |
+| 3 | `그(él) 는 음악(música) 를 듣다(escuchar)` |
+| 4 | `그녀(ella) 는 영화(película) 를 보다(ver)` |
+| 5 | `우리(nosotros) 는 카메라(cámara) 를 가지다(tener)` |
+| 6 | `나(yo) 는 피자(pizza) 를 먹다(comer) 그리고(y) 그(él) 는 커피(café) 를 마시다(beber)` |
+| 7 | `너(tú) 는 음악(música) 를 듣다(escuchar) 그리고(y) 우리(nosotros) 는 영화(película) 를 보다(ver)` |
+| 8 | `그(él) 는 커피(café) 를 마시다(beber) 하지만(pero) 그녀(ella) 는 피자(pizza) 를 먹다(comer)` |
+| 9 | `나(yo) 는 카메라(cámara) 를 가지다(tener) 또는(o) 너(tú) 는 음악(música) 를 듣다(escuchar)` |
+| 10 | `나(yo) 는 피자(pizza) 를 먹다(comer) 그리고(y) 너(tú) 는 커피(café) 를 마시다(beber) 그리고(y) 그(él) 는 음악(música) 를 듣다(escuchar)` |
+| 11 | `우리(nosotros) 는 영화(película) 를 보다(ver) 그리고(y) 그(él) 는 음악(música) 를 듣다(escuchar)` |
+| 12 | `그녀(ella) 는 카메라(cámara) 를 가지다(tener) 그리고(y) 우리(nosotros) 는 피자(pizza) 를 먹다(comer)` |
+| 13 | `너(tú) 는 영화(película) 를 보다(ver) 하지만(pero) 나(yo) 는 음악(música) 를 듣다(escuchar)` |
+| 14 | `그(él) 는 음악(música) 를 듣다(escuchar) 또는(o) 그녀(ella) 는 커피(café) 를 마시다(beber)` |
+| 15 | `우리(nosotros) 는 피자(pizza) 를 먹다(comer) 그리고(y) 나(yo) 는 영화(película) 를 보다(ver)` |
+| 16 | `나(yo) 는 커피(café) 를 마시다(beber)` |
+| 17 | `너(tú) 는 카메라(cámara) 를 가지다(tener)` |
+| 18 | `그녀(ella) 는 음악(música) 를 듣다(escuchar)` |
+| 19 | `그(él) 는 영화(película) 를 보다(ver)` |
+| 20 | `우리(nosotros) 는 커피(café) 를 마시다(beber)` |
+
+***Cadenas rechazadas***
+
+| # | Cadena | Razón |
+|--|--------|------|
+| 1 | `나(yo) 는 피자(pizza) 먹다(comer)` | Falta `를` |
+| 2 | `나(yo) 피자(pizza) 를 먹다(comer)` | Falta `는` |
+| 3 | `는 피자(pizza) 를 먹다(comer)` | Falta sujeto |
+| 4 | `나(yo) 는 를 먹다(comer)` | Falta objeto |
+| 5 | `나(yo) 는 피자(pizza) 를` | Falta verbo |
+| 6 | `나(yo) 는 피자(pizza) 를 먹다(comer) 그리고(y)` | Incompleta |
+| 7 | `나(yo) 는 피자(pizza) 를 먹다(comer) 그리고(y) 그리고(y) 그(él) 는 커피(café) 를 마시다(beber)` | Doble conjunción |
+| 8 | `나(yo) 는 피자(pizza) 를 그리고(y) 먹다(comer)` | Conj mal colocada |
+| 9 | `나(yo) 는 먹다(comer)` | Falta objeto |
+| 10 | `피자(pizza) 를 먹다(comer)` | Falta sujeto |
+| 11 | `나(yo) 는 피자(pizza) 먹다(comer) 그리고(y) 그(él) 는 커피(café) 를 마시다(beber)` | Falta `를` |
+| 12 | `나(yo) 는 피자(pizza) 를 먹다(comer) 그(él) 는 커피(café) 를 마시다(beber)` | Falta conjunción |
+| 13 | `나(yo) 는 피자(pizza) 를 먹다(comer) 또는(o)` | Incompleta |
+| 14 | `나(yo) 는 는 피자(pizza) 를 먹다(comer)` | Doble `는` |
+| 15 | `나(yo) 는 피자(pizza) 를 를 먹다(comer)` | Doble `를` |
+| 16 | `나(yo) 는 음악(música) 를 그리고(y) 그(él) 는 커피(café) 를 마시다(beber)` | Falta verbo |
+| 17 | `나(yo) 는 피자(pizza) 를 먹다(comer) 하지만(pero)` | Incompleta |
+| 18 | `나(yo) 는 피자(pizza) 를 먹다(comer) 그리고(y) 그(él) 커피(café) 를 마시다(beber)` | Falta `는` |
+| 19 | `나(yo) 는 피자(pizza) 를 먹다(comer) 그리고(y) 그(él) 는 커피(café) 마시다(beber)` | Falta `를` |
+| 20 | `나(yo) 는 피자(pizza) 를 먹다(comer) 그리고(y) 그(él) 는 커피(café) 를` | Falta verbo |
 
 ## ANÁLISIS
 
