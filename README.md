@@ -187,9 +187,43 @@ El problema esta en la producción del no terminal ***Sentence***:
 
 - ***Sentence*** -> ***Sentence*** Conj Tail | Tail
 
-## IMPLEMENTACIÓN
+Aquí podemos observar que ocurre exactamente lo que el libro describe como recursión izquierda, ya que el símbolo no terminal ***Sentence*** aparece nuevamente al inicio del lado derecho de la producción, es decir, la regla comienza llamándose a sí misma, lo que provoca una secuencia de llamadas recursivas que no progresa, lo que puede llevar a un ciclo infinito.
 
-## PRUEBAS
+Los métodos Top-down parsing no pueden trabajar con gramáticas que contienen recursión izquierda, por lo que es necesario aplicar una transformación para eliminarla. De acuerdo con Compilers: Principles, Techniques, and Tools (Aho et al., 2007), una producción de la forma A → A α ∣ β puede reescribirse en una forma equivalente sin recursión izquierda, sustituyéndola por dos nuevas producciones: 
+- A → β A'
+- A'→ α A'∣ ε.
+
+Esta transformación permite mantener el mismo lenguaje generado por la gramática, pero evita que el no terminal se llame a sí mismo al inicio de la producción, lo que la hace compatible con top-down parsers.
+
+Ahora para aplicar esto a mi gramática se hace de la siguiente manera:
+
+1. Primero identificamos la producción con recursión izquierda en nuestra gramática, lo cual ya habiamos hecho y definimos como:
+- ***Sentence*** -> ***Sentence*** Conj Tail | Tail
+2. Identificamos cada parte de la producción la cual esta escrita en su forma general: A -> A α | β
+  - A = Sentence
+  - α = Conj Tail
+  - β = Tail
+3. Por último reescribimos aplicando la transformación previamente explicada a la producción con recursividad, lo cual queda de la siguieinte manera:
+
+Transformación que vamos a aplicar :
+  - A → β A'
+  - A'→ α A'∣ ε.
+
+Resultado:
+  ```
+  Sentence -> Tail Sentence'
+  Sentence' -> Conj Tail Sentence' | ε
+  ```  
+Con este cambio, el no terminal ***Sentence*** ya no se llama a sí mismo al inicio de la producción, sino que primero llama a Tail y después utiliza un nuevo no terminal ***Sentence'*** que se encarga de continuar la lectura o finalizarla.
+
+De esta manera, se elimina la recursión izquierda sin modificar el lenguaje generado por la gramática, permitiendo que ahora pueda ser utilizada en un analizador LL(1).
+
+Esto nos deja finalmente con esta gramática libre de ambigüedad y recursión izquierda:
+<img width="400" height="image" alt="image" src="https://github.com/user-attachments/assets/6f00612b-2cef-45bc-ba11-979cdf1f4fc5" />
+
+
+## IMPLEMENTACIÓN Y PRUEBAS
+
 
 ## ANÁLISIS
 
