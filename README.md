@@ -224,6 +224,12 @@ Esto nos deja finalmente con esta gramática libre de ambigüedad y recursión i
 
 ## IMPLEMENTACIÓN Y PRUEBAS
 
+Para la implementación y pruebas de la gramática vamos a usar dos recursos:
+- Un código en Python con NLTK que me permitirá probar la gramática generando árboles de sintaxis, lo cual va a ayudar a visualizar cómo es que se crean las oraciones y verificará que su estructura sea correcta conforme a las reglas que ya definí.
+- Un LL(1) Parser el cual se utilizará para validar formalmente la gramática, este me va a permitir obtener y comprobar elementos como los conjuntos FIRST y FOLLOW, así como el correcto funcionamiento del análisis sintáctico paso a paso, además de ayudarme a confirmar que la gramática cumple con las condiciones necesarias, no tener ambigüedad y recursión izquierda, ya que de no ser así el LL(1) no funcionará.
+
+
+
 
 ## ANÁLISIS
 
@@ -233,3 +239,4 @@ Esto nos deja finalmente con esta gramática libre de ambigüedad y recursión i
 - Toyryla, L. (2026, March 17). Korean Grammar - a Beginner’s Guide. 90 Day Korean. https://www.90daykorean.com/korean-grammar/
 - Guasti, C. (2023, September 6). Interesting facts about the Korean language. https://www.citylit.ac.uk/blog/interesting-facts-about-the-korean-language
 - Martin, SE (2025, Aprill 23). Idioma coreano . Enciclopedia Británica . https://www.britannica.com/topic/Korean-language
+- LL(1) Parser generator. (n.d.). https://www.cs.princeton.edu/courses/archive/spring20/cos320/LL1/
