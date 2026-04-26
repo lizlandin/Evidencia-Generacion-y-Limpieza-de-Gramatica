@@ -123,13 +123,13 @@ El output muestra dos árboles, lo cual quiere decir que hay dos maneras diferen
 
 Para poder lograr esto, primero se necesita identificar la producción que permite más de una interpretación para las cadenas, en este caso, el problema estaba en la regla:
 
-Sentence -> **Sentence** Conj **Sentence** | SimpleSentence
+- Sentence -> **Sentence** Conj **Sentence** | SimpleSentence
 
 Esta producción era ambigua porque ambos lados de la conjunción tenían la misma categoría, es decir, **Sentence**, y al ser equivalentes, una misma oración compuesta podía agruparse de distintas maneras y, por lo tanto, generaba más de un árbol sintáctico.
 
 Lo que hice para poder arreglar la gramática fue agregar estados intermedios y renombrar ramas equivalentes, para esto se introdujo un nuevo no terminal cuyo propósito fue separar la estructura completa de la unidad básica de la oración, es decir, en lugar de permitir que ambos lados fueran **Sentence**, definí un estado intermedio, Tail, con la producción:
 
-Tail -> SimpleSentence
+- Tail -> SimpleSentence
 
 y después, reescribí la regla principal como:
 
@@ -139,10 +139,14 @@ Con este cambio, la gramática ya no tiene dos ramas equivalentes a la hora de u
 
 En otras palabras, lo que se hizo fue cambiar una de las ramas en las producciones de la gramática que antes eran iguales, dándole un nombre diferente a uno de los símbolos no terminales para que ya no representaran exactamente lo mismo. Al separar esas funciones y hacer que uno de los lados represente una oración más simple, se evita que la gramática tenga dos caminos equivalentes en sus producciones para generar la misma cadena, de esta forma, la estructura queda fija y solo existe una manera de derivar cada cadena, lo que elimina la ambigüedad.
 
+Una vez hice estos cambios la gramática escrita se ve de esta manera:
 
+<img width="390" height="image" alt="image" src="https://github.com/user-attachments/assets/86cea24e-a146-4ff6-9724-f5c456cbaa95" />
 
+Con estos cambios, la gramática ya no es ambigua, que era justo lo que se buscaba en este paso, sin embargo, todavía presenta recursión izquierda, lo cual puede causar problemas al momento de analizarla, por eso, el siguiente paso es eliminar esta recursión para dejar la gramática completamente lista.
 
 ### Elimininación de Recursividad Izquierda
+
 
 ## IMPLEMENTACIÓN
 
