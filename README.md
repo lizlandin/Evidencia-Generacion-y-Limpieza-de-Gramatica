@@ -226,6 +226,10 @@ Y ahora cuando corremos el código con las correcciones aplicadas titulado "gram
 <img width="1200" height="image" alt="Screenshot 2026-04-25 at 5 36 28 p m" src="https://github.com/user-attachments/assets/ba8a78fa-5213-420d-a909-d97a7aaf3796" />
 
 
+***NOTA***
+
+En el código de python se cambio ***Sentence'*** por ***N_Sentence** porque no corría con el carácter ***'***. 
+
 ## IMPLEMENTACIÓN Y PRUEBAS
 
 Para la implementación y pruebas de la gramática vamos a usar dos recursos:
@@ -300,7 +304,7 @@ Debido a que las cadenas a probar son un poco largas y es fácil equivocarse al 
 
 El parser LL(1) que utilicé es de la Universidad de Princeton y nos fue proporcionado en clase para probar nuestra gramática, el link de acceso es el siguiente:https://www.cs.princeton.edu/courses/archive/spring20/cos320/LL1/
 
-Aquí lo que hice fuue ingresar la gramática en el formato especificado lo cual es importante porque, si la gramática no respeta los requerimientos, el parser no puede interpretarla correctamente. Por ejemplo, se debe usar "::=" para definir producciones y '' para representar la cadena vacía. 
+Aquí lo que hice fuue ingresar la gramática en el formato especificado lo cual es importante porque, si la gramática no respeta los requerimientos, el parser no puede interpretarla correctamente. Por ejemplo, se debe usar "::=" para definir producciones y '' para representar una cadena vacía. 
 
 Una vez adaptada, la gramática quedo de la siguiente manera:
 ```
@@ -384,6 +388,17 @@ Cadena a analizar: 나 는 피자 를 먹다 (yo como pizza)
 <img width="400" height="image" alt="image" src="https://github.com/user-attachments/assets/3dbdf1ad-e397-4ac8-a4c7-8097d198dcf0" />
 
 ## ANÁLISIS
+
+Para definir la complejidad de las gramáticas que realicé a lo largo de esta evidencia me basaré en la Jerarquía de Chomsky.
+
+Linz y Rodger (2022) explican en su libro "An Introduction to Formal Languages and Automata" que Noam Chomsky, considerado uno de los fundadores de la teoría de lenguajes formales, propuso una clasificación inicial de los lenguajes en cuatro tipos, numerados del 0 al 3, terminología que se ha mantenido a lo largo del tiempo y sigue utilizándose con frecuencia.
+En su jerrarquía los lenguajes de tipo 0 son aquellos generados por gramáticas irrestrictas, también conocidos como lenguajes recursivamente enumerables, el tipo 1 corresponde a los lenguajes sensibles al contexto, el tipo 2 a los lenguajes libres de contexto y el tipo 3 a los lenguajes regulares.
+
+<img src="https://github.com/user-attachments/assets/3b92a8bd-596d-4b72-86ae-9a72c354182a" width="400">
+
+***Figura 1.*** Jerarquía de Chomsky.
+
+Tomado de "An Introduction to Formal Languages and Automata" (Linz & Rodger, 2022).
 
 ***Nivel de la gramática con respecto a la jerarquía de Chomsky antes de la eliminación de la ambigüedad y la recursividad izquierda.***
 
