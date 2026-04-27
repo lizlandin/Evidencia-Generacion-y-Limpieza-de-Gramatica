@@ -221,6 +221,10 @@ De esta manera, se elimina la recursión izquierda sin modificar el lenguaje gen
 Esto nos deja finalmente con esta gramática libre de ambigüedad y recursión izquierda:
 <img width="400" height="image" alt="image" src="https://github.com/user-attachments/assets/6f00612b-2cef-45bc-ba11-979cdf1f4fc5" />
 
+Y ahora cuando corremos el código con las correcciones aplicadas titulado "gramática_final.py", con la misma cadena con la que la vez pasada salieron dos árboles, podemos ver que ahora el output es un solo árbol, confirmando que la gramática ya esta lista.
+
+<img width="1200" height="image" alt="Screenshot 2026-04-25 at 5 36 28 p m" src="https://github.com/user-attachments/assets/ba8a78fa-5213-420d-a909-d97a7aaf3796" />
+
 
 ## IMPLEMENTACIÓN Y PRUEBAS
 
@@ -379,20 +383,15 @@ Cadena a analizar: 나 는 피자 를 먹다 (yo como pizza)
 <img width="400" height="image" alt="image" src="https://github.com/user-attachments/assets/73a4192b-ba3e-4d76-9fdc-41e2184d633e" />
 <img width="400" height="image" alt="image" src="https://github.com/user-attachments/assets/3dbdf1ad-e397-4ac8-a4c7-8097d198dcf0" />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## ANÁLISIS
+
+***Nivel de la gramática con respecto a la jerarquía de Chomsky antes de la eliminación de la ambigüedad y la recursividad izquierda.***
+
+
+***Nivel de la gramática con respecto a la jerarquía de Chomsky despues de la eliminación de la ambigüedad y la recursividad izquierda.***
+
+
+***Implicaciones de la complejidad temporal de ambas gramáticas***
 
 ## REFERENCIAS 
 - Linz, P., & Rodger, S. H. (2022). An introduction to formal languages and automata. Jones & Bartlett Learning.
