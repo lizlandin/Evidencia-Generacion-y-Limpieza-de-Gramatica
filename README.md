@@ -22,7 +22,7 @@ Sin embargo, esta regla por sí sola no es suficiente para describir completamen
 
 <img width="280" height="50" alt="image" src="https://github.com/user-attachments/assets/27e76bf1-f7c4-4879-b190-c760cb14d913" />
 
-De acuerdo con estos autores, al asociar palabras concretas a cada categoría (por ejemplo, artículos como “a” o “the”, sustantivos como “boy” o “dog”, y verbos como “runs” o “walks”), la gramática permite generar oraciones correctas dentro del lenguaje, como “a boy runs” o “the dog walks”.
+Estos autores afirman que al asociar palabras concretas a cada categoría (por ejemplo, artículos como “a” o “the”, sustantivos como “boy” o “dog”, y verbos como “runs” o “walks”), la gramática permite generar oraciones correctas dentro del lenguaje, como “a boy runs” o “the dog walks”.
 
 Asimismo, Linz y Rodger (2022) explican que, en teoría, una gramática completa permitiría describir cualquier oración válida del idioma mediante este proceso. Este enfoque consiste en partir de una estructura general y descomponerla progresivamente en componentes más simples, lo que da lugar a lo que se conoce como gramáticas formales.
 
@@ -401,6 +401,13 @@ En su jerrarquía los lenguajes de tipo 0 son aquellos generados por gramáticas
 Tomado de "An Introduction to Formal Languages and Automata" (Linz & Rodger, 2022).
 
 ***Nivel de la gramática con respecto a la jerarquía de Chomsky antes de la eliminación de la ambigüedad y la recursividad izquierda.***
+
+Una gramática ***G=(V,T,S,P)*** se considera libre de contexto cuando todas sus producciones tienen una estructura específica: en el lado izquierdo aparece únicamente un símbolo no terminal ***A***, y en el lado derecho una cadena ***x*** que puede estar formada por símbolos terminales, no terminales o una combinación de ambos, lo cual se expresa como ***A → x.*** (Linz & Rodger, 2022). Dado que la gramática original cumple con esta estructura, pertenece al nivel 2 de la jerarquía de Chomsky.
+
+<img width="1398" height="938" alt="image" src="https://github.com/user-attachments/assets/e86c7040-461c-4cad-bdc7-6f096ca4fc55" />
+
+
+
 
 
 ***Nivel de la gramática con respecto a la jerarquía de Chomsky despues de la eliminación de la ambigüedad y la recursividad izquierda.***
