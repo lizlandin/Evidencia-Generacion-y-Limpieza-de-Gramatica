@@ -2,7 +2,7 @@
 
 ## Contexto de la gramática 
 
-El lenguaje que escogí para poder generar la gramática que se pedia en este proyecto fue el Coreano.
+El lenguaje que escogí para poder generar la gramática que se pedía en este proyecto fue el Coreano.
 
 El coreano es un idioma que se habla por más de 75 millones de personas, principalmente en Corea del Norte y Corea del Sur, además de en algunas lugares fuera de estos países como Japón,China y Estados Unidos. Este es el idioma oficial tanto de Corea del Sur (República de Corea) como de Corea del Norte (República Popular Democrática de Corea), sin embargo tienen diferencias menores en cuanto a ortografía, orden alfabético y vocabulario.
 
@@ -413,10 +413,15 @@ Por esto mismo las transformaciones aplicadas conservan la forma ***A → α*** 
 
 ***Implicaciones de la complejidad temporal de ambas gramáticas***
 
-En la siguiente tabla podemos observar  
+En la siguiente tabla podemos observar nuevamente la jerarquía de Chomsky pero con más características que explican mejor cada nivel:
 
 <img width="700" height="image" alt="image" src="https://github.com/user-attachments/assets/e86c7040-461c-4cad-bdc7-6f096ca4fc55" />
 
+En la evidencia anterior trabajamos con un Autómata Finito Determinista (DFA), el cual procesa las cadenas en tiempo proporcional a la longitud de la entrada, es decir, en tiempo lineal O(n), sin embargo a lo largo de esa evidencia se entendió que ese tipo de modelos presenta limitaciones, ya que, como señalan Aho et al. (2007), los autómatas finitos no tienen la capacidad de “contar”, por lo que no pueden reconocer lenguajes que requieren mantener una relación entre símbolos, como aquellos de la forma a^n b^n.
+
+En contraste, en esta evidencia se trabaja con gramáticas libres de contexto, las cuales pertenecen a un nivel superior en la jerarquía de Chomsky, el 2, y de acuerdo con Aho et al. (2007), todo lenguaje que puede ser descrito por una gramática libre de contexto puede ser reconocido en un tiempo de hasta O(n^3),lo que significa una mayor complejidad en comparación con los lenguajes regulares. Sin embargo, al tener que transformar la gramática para que sea compatible con un parser LL(1), quitando ambigüedad y recursividad izquierda, es posible que el realizar estos cambios tenga un impacto en su complejidad, haciendo posible un análisis sintáctico de manera más eficiente, ya que este tipo de parser opera de forma determinística y sin retrocesos, lo que en la práctica permite analizar las cadenas en tiempo lineal respecto a su longitud, pero esto no implica que sea equivalente a un autómata finito determinista (DFA), ya que las gramáticas libres de contexto pueden describir estructuras más complejas, como oraciones completas con relaciones entre sus partes. Por esta razón, aunque en este caso el análisis puede realizarse en tiempo lineal por las condiciiones del LL(1), el modelo sigue siendo más complejo que el de los lenguajes regulares.
+
+Esto coincide con lo mostrado en la tabla de la jerarquía de Chomsky, donde los lenguajes regulares (como los DFA) presentan una complejidad O(n), mientras que los lenguajes libres de contexto, en su forma general, pueden requerir hasta O(n^3), mostrando así el como existe un incremento en complejidad al trabajar con modelos más arriba en la jerarquía.
 
 ## REFERENCIAS 
 - Linz, P., & Rodger, S. H. (2022). An introduction to formal languages and automata. Jones & Bartlett Learning.
