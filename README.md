@@ -230,6 +230,31 @@ Y ahora cuando corremos el código con las correcciones aplicadas titulado "gram
 
 En el código de python se cambio ***Sentence'*** por ***N_Sentence** porque no corría con el carácter ***'***. 
 
+***EJEMPLOS DE COMO FUNCIONA AHORA LA GRAMÁTICA CON ÁRBOLES***
+
+**Oración:** 너(tú) 는 커피(café) 를 마시다(beber)
+
+<img width="400" height="image" alt="image" src="https://github.com/user-attachments/assets/f0c74890-d0c0-4c6b-8426-badeecca654a" />
+
+**Oración:** 우리(nosotros) 는 카메라(cámara) 를 가지다(tener)
+
+<img width="400" height="image" alt="Screenshot 2026-04-27 at 10 23 04 p m" src="https://github.com/user-attachments/assets/57101af3-09ff-4d33-9443-a3525d399719" />
+
+**Oración:** 그녀(ella) 는 음악(música) 를 듣다(escuchar)
+
+<img width="400" height="image" alt="Screenshot 2026-04-27 at 10 24 37 p m" src="https://github.com/user-attachments/assets/e5c78ce3-d4b3-4073-b572-cc7a72145704" />
+
+**Oración:** 그(él) 는 커피(café) 를 마시다(beber) 하지만(pero) 그녀(ella) 는 피자(pizza) 를 먹다(comer)
+
+<img width="600" height="image" alt="Screenshot 2026-04-27 at 10 25 59 p m" src="https://github.com/user-attachments/assets/c57c7a5e-2276-44a2-8456-686f3505d5ca" />
+
+**Oración:** 너(tú) 는 영화(película) 를 보다(ver) 하지만(pero) 나(yo) 는 음악(música) 를 듣다(escuchar)
+<img width="600" height="image" alt="Screenshot 2026-04-27 at 10 27 45 p m" src="https://github.com/user-attachments/assets/34e53d20-944a-4dab-a7e4-cd3a207a6ab5" />
+
+**Oración:** 우리(nosotros) 는 피자(pizza) 를 먹다(comer) 그리고(y) 나(yo) 는 영화(película) 를 보다(ver)
+<img width="600" height="image" alt="image" src="https://github.com/user-attachments/assets/2c0d6a7f-abc8-461d-91bd-7337dc035976" />
+
+
 ## IMPLEMENTACIÓN Y PRUEBAS
 
 Para la implementación y pruebas de la gramática vamos a usar dos recursos:
