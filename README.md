@@ -402,18 +402,21 @@ Tomado de "An Introduction to Formal Languages and Automata" (Linz & Rodger, 202
 
 ***Nivel de la gramática con respecto a la jerarquía de Chomsky antes de la eliminación de la ambigüedad y la recursividad izquierda.***
 
-Una gramática ***G=(V,T,S,P)*** se considera libre de contexto cuando todas sus producciones tienen una estructura específica: en el lado izquierdo aparece únicamente un símbolo no terminal ***A***, y en el lado derecho una cadena ***x*** que puede estar formada por símbolos terminales, no terminales o una combinación de ambos, lo cual se expresa como ***A → x.*** (Linz & Rodger, 2022). Dado que la gramática original cumple con esta estructura, pertenece al nivel 2 de la jerarquía de Chomsky.
+Una gramática ***G=(V,T,S,P)*** se considera libre de contexto cuando todas sus producciones tienen una estructura específica: en el lado izquierdo aparece únicamente un símbolo no terminal ***A***, y en el lado derecho una cadena ***x*** que puede estar formada por símbolos terminales, no terminales o una combinación de ambos, lo cual se expresa como ***A → x.*** (Linz & Rodger, 2022). 
 
-<img width="1398" height="938" alt="image" src="https://github.com/user-attachments/assets/e86c7040-461c-4cad-bdc7-6f096ca4fc55" />
+Dado que la gramática original cumple con esta estructura, pertenece al nivel 2 de la jerarquía de Chomsky.
 
+***Nivel de la gramática con respecto a la jerarquía de Chomsky después de la eliminación de la ambigüedad y la recursividad izquierda.***
 
-
-
-
-***Nivel de la gramática con respecto a la jerarquía de Chomsky despues de la eliminación de la ambigüedad y la recursividad izquierda.***
-
+Después de aplicar las transformaciones para eliminar la ambigüedad y la recursión izquierda, la gramática sigue perteneciendo al nivel 2 de la jerarquía de Chomsky, es decir, continúa siendo una gramática libre de contexto, ya que las modificaciones que fueron realizadas no cambian la naturaleza de la gramática porque solo se reorganizaron sus producciones para poder realizar un análisis más eficiente y así se pudiera analizar mediante un parser LL(1). 
+Por esto mismo las transformaciones aplicadas conservan la forma ***A → α*** en todas las producciones, manteniendo así su clasificación como lenguaje libre de contexto.
 
 ***Implicaciones de la complejidad temporal de ambas gramáticas***
+
+En la siguiente tabla podemos observar  
+
+<img width="700" height="image" alt="image" src="https://github.com/user-attachments/assets/e86c7040-461c-4cad-bdc7-6f096ca4fc55" />
+
 
 ## REFERENCIAS 
 - Linz, P., & Rodger, S. H. (2022). An introduction to formal languages and automata. Jones & Bartlett Learning.
